@@ -1,4 +1,4 @@
-import 'package:flutter_getx/models/people.dart';
+import '../models/people.dart';
 import 'package:get/get.dart';
 
 class PeopleController extends GetxController {

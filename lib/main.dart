@@ -1,101 +1,71 @@
 import 'package:flutter/material.dart';
-import './controllers/counter_controller.dart';
-import 'package:flutter_getx/controllers/people_controller.dart';
-import './models/people.dart';
 import 'package:get/get.dart';
+import './controllers/count_controller.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  var people = Get.put(PeopleController());
-  final controller = Get.put(CounterController());
-  final inputName = TextEditingController();
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GetX Counter Apps'),
+        title: Text('GetBuilder Unique ID - Menus'),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            /// Using OBX Widget
-
-            // Obx(() => Text(
-            //       'Nama ${people.peopleController.value.name}',
-            //       style: const TextStyle(fontSize: 30),
-            //     )),
-            // SizedBox(
-            //   height: 25,
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 20),
-            //   child: Column(
-            //     children: [
-            //       TextField(
-            //           controller: inputName,
-            //           onChanged: (value) =>
-            //               people.peopleController.update((val) {
-            //                 people.peopleController.value.name = value;
-            //               })),
-            //       Container(
-            //         margin: EdgeInsets.only(top: 30),
-            //         width: double.infinity,
-            //         child: OutlinedButton(
-            //             onPressed: () => people.changeToUpperCase(),
-            //             child: Text('Uppercase Name')),
-            //       )
-            //     ],
-            //   ),
-            // ),
-
-            /// Using GetX Widget
-            // GetX<CounterController>(
-            //   init: CounterController(),
-            //   builder: (controller) {
-            //     return Column(
-            //       children: [
-            //         Text('Angka ${controller.counter.value}'),
-            //       ],
-            //     );
-            //   },
-            // ),
-
-            GetBuilder<CounterController>(
-              builder: (controller) {
-                return Column(
-                  children: [
-                    Text('Angka ${controller.counter}'),
-                  ],
-                );
-              },
+            GetBuilder(
+              id: 'menuA',
+              builder: (controller) =>
+                  Text('Menu A - ${controller.menu['menuA']}'),
+              init: CounterController(),
+            ),
+            GetBuilder(
+              id: 'menuB',
+              builder: (controller) =>
+                  Text('Menu B - ${controller.menu['menuB']}'),
+              init: CounterController(),
+            ),
+            GetBuilder(
+              id: 'menuC',
+              builder: (controller) =>
+                  Text('Menu C - ${controller.menu['menuC']}'),
+              init: CounterController(),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                  onPressed: () => controller.decrement(),
-                  child: const Icon(Icons.remove),
-                ),
+                    onPressed: () => Get.find<CounterController>().add(
+                          id: 'menuA',
+                        ),
+                    child: const Text('Menu A')),
                 OutlinedButton(
-                  onPressed: () => controller.increment(),
-                  child: const Icon(Icons.add),
-                ),
+                    onPressed: () =>
+                        Get.find<CounterController>().add(id: 'menuB'),
+                    child: const Text('menu B')),
+                OutlinedButton(
+                    onPressed: () =>
+                        Get.find<CounterController>().add(id: 'menuC'),
+                    child: const Text('menu C')),
               ],
-            ),
+            )
           ],
         ),
       ),
