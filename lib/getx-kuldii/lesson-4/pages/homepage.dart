@@ -10,7 +10,7 @@ class MyHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
-        actions: [
+        actions: [ 
           IconButton(
               onPressed: () => Get.to(() => TextPage()),
               icon: Icon(Icons.next_plan))
