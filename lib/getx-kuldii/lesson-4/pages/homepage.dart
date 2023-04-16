@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/controllers/count_controller.dart';
+import '../controllers/count_controller.dart';
 import 'textpage.dart';
 import 'package:get/get.dart';
 
