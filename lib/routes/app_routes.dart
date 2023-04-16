@@ -1,9 +1,7 @@
-import 'package:flutter_getx/routes/routes_name.dart';
-
+import '../pages/detail.dart';
+import '../routes/routes_name.dart';
 import '../pages/homepage.dart';
-import '../pages/second_page.dart';
-import '../pages/third_page.dart';
-import '../pages/fourth_page.dart';
+import '../pages/product.dart';
 import 'package:get/get.dart';
 
 class RouteNames {
@@ -13,16 +11,12 @@ class RouteNames {
       page: () => MyHome(),
     ),
     GetPage(
-      name: NamesRoute.secondPage,
-      page: () => SecondPage(),
+      name: NamesRoute.product,
+      page: () => ProductPage(),
     ),
     GetPage(
-      name: NamesRoute.thirdPage,
-      page: () => ThirdPage(),
-    ),
-    GetPage(
-      name: NamesRoute.fourthPage,
-      page: () => FourthPage(),
+      name: NamesRoute.productDetail,
+      page: () => DetailPage(),
     ),
   ];
 }

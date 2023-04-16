@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx/routes/routes_name.dart';
-import 'product.dart';
 import 'package:get/get.dart';
 
-class MyHome extends StatelessWidget {
+class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Home Page'),
+          title: Text('Detail Page'),
         ),
         body: Container(
           width: double.infinity,
@@ -16,9 +15,8 @@ class MyHome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () => Get.toNamed(NamesRoute.product),
-                  child: Text('All Products')),
+              Text('Product Name ${Get.parameters['name']}'),
+              Text('Product Name ${Get.parameters['ukuran']}')
             ],
           ),
         ));
