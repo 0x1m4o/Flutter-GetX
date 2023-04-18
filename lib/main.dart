@@ -1,55 +1,25 @@
+/// Packages
 import 'package:flutter/material.dart';
-
+import 'package:flutter_getx/controllers/mycontroller.dart';
 import 'package:get/get.dart';
+
+/// Files
+import './pages/homepage.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  /// On using LazyPut if you leave the state the controller totally remove and cannot created again.
+  /// To make it not totally remove use fenix so the controller not full deleted from the memory
+  final counterCounterLazyPut =
+      Get.lazyPut(() => MyController(), fenix: true, tag: 'Lazy-Put');
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('GetX Dialog'),
-            ),
-            floatingActionButton: FloatingActionButton(
-                onPressed: () => Get.bottomSheet(Container(
-                      color: Colors.grey[200],
-                      padding: EdgeInsets.all(30),
-                      child: Center(
-                        child: ListView(
-                          children: [
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Username',
-                                  border: OutlineInputBorder()),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Username',
-                                  border: OutlineInputBorder()),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Username',
-                                  border: OutlineInputBorder()),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                          ],
-                        ),
-                      ),
-                    )))));
+      home: MyHome(),
+    );
   }
 }
