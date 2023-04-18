@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 void main() {
@@ -6,33 +7,46 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: MyHome(),
-    );
-  }
-}
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('GetX Dialog'),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => Get.defaultDialog(
 
-class MyHome extends StatelessWidget {
-  const MyHome({super.key});
+                  /// Default
+                  title: 'Halo this is title',
+                  middleText: 'This is middle Text',
+                  middleTextStyle: TextStyle(overflow: TextOverflow.ellipsis),
+                  textCancel: 'Cancel',
+                  textConfirm: 'Confirm',
+                  confirmTextColor: Colors.white,
+                  onCancel: () => Get.back(),
+                  // barrierDismissible: false
+                  titlePadding: EdgeInsets.all(10),
+                  contentPadding: EdgeInsets.all(10)
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('GetX SnackBar'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.snackbar(
-            'Ini Snackbar', 'Tempor sunt nulla excepteur officia .',
-            backgroundColor: Colors.grey[400],
-            borderWidth: 2,
-            borderColor: Colors.grey[700],
-            animationDuration: Duration(seconds: 2),
-            duration: Duration(seconds: 2)),
-        child: Icon(Icons.notifications_active_rounded),
-      ),
-    );
+                  /// Custom
+                  // cancel: ElevatedButton(
+                  //     onPressed: () => Get.back(), child: Text('Cancel')),
+                  // confirm: ElevatedButton(
+                  //     onPressed: () => Get.back(), child: Text('Confirm')),
+                  ),
+              /* Get.dialog(AlertDialog(
+                  title: Text('Halo this is title'),
+                  content: Text('Halo this is content'),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () => Get.back(), child: Text('Cancel')),
+                    ElevatedButton(
+                        onPressed: () => Get.back(), child: Text('Confirm')),
+                  ],
+                ) */
+            )));
   }
 }
