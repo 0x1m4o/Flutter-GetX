@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/routes/app_routes.dart';
-import 'package:flutter_getx/routes/routes_name.dart';
-import './pages/homepage.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -13,12 +10,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: MyHome(),
-      // unknownRoute: GetPage(
-      //   name: '/error-page',
-      //   page: () => ErrorPage(),
-      // ),
-      // initialRoute: NamesRoute.homepage,
-      getPages: RouteNames.route,
+    );
+  }
+}
+
+class MyHome extends StatelessWidget {
+  const MyHome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('GetX SnackBar'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.snackbar(
+            'Ini Snackbar', 'Tempor sunt nulla excepteur officia .',
+            backgroundColor: Colors.grey[400],
+            borderWidth: 2,
+            borderColor: Colors.grey[700],
+            animationDuration: Duration(seconds: 2),
+            duration: Duration(seconds: 2)),
+        child: Icon(Icons.notifications_active_rounded),
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_getx/routes/routes_name.dart';
+import '../routes/routes_name.dart';
 
 import '../pages/homepage.dart';
 import '../pages/second_page.dart';

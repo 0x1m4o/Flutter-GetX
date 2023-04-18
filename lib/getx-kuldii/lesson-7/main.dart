@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       //   name: '/error-page',
       //   page: () => ErrorPage(),
       // ),
-      initialRoute: NamesRoute.homepage,
+      // initialRoute: NamesRoute.homepage,
       getPages: RouteNames.route,
     );
   }

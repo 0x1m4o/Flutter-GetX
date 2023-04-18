@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/routes/routes_name.dart';
+import '../routes/routes_name.dart';
 
 import 'package:get/get.dart';
 
