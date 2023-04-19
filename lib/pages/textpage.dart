@@ -1,43 +1,59 @@
 /// Packages
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../controllers/mycontroller.dart';
 import 'package:get/get.dart';
 
 class TextPage extends StatelessWidget {
-  /// For using Get.put i recommend to put the Controllers in the State that you
-  /// need because if you put in the first place like MaterialApp, the Controller
-  /// ill run there and the Controllers cannot auto deleted from the memory
-
-  // final TextController = Get.put(MyController());
-  final textController =
-      Get.put(MyController(), tag: 'text-controller', permanent: true);
+  final textController = Get.put(DataController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Text Page'),
+        title: const Text('Text Page'),
       ),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   Get.putAsync<SharedPreferences>(() async {
+      //     final prefs = await SharedPreferences.getInstance();
+      //     await prefs.setString('userName', 'Chandra');
+      //     textController.userText.value.text =
+      //         prefs.getString('userName').toString();
+      //     return prefs;
+      //   });
+      // }),
       body: Center(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'Username'),
-              controller: textController.userText,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'Password'),
-              controller: textController.password,
-            ),
-          ],
+        child: GetBuilder(
+          init: DataController(),
+          // ignore: void_checks
+          initState: (state) => textController.setData(),
+          builder: (controller) => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: textController.userText.value,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Username'),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Obx(
+                () => TextField(
+                  obscureText: textController.visiblePassw.value,
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          onPressed: () => textController.visiblePass(),
+                          icon: Icon(Icons.remove_red_eye)),
+                      border: OutlineInputBorder(),
+                      hintText: 'Password'),
+                  controller: textController.password.value,
+                ),
+              )
+            ],
+          ),
         ),
       )),
     );

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class MyController extends GetxController {
-  var counter = 0.obs;
+class DataController extends GetxController {
+  var userText = TextEditingController().obs;
+  var password = TextEditingController().obs;
+  var visiblePassw = true.obs;
 
-  final userText = TextEditingController();
-  final password = TextEditingController();
-
-  void add() {
-    counter++;
+  Future<void> setData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userName', 'Chandra');
+    await prefs.setString('userPassword', 'Chandra123');
+    userText.value.text = prefs.getString('userName').toString();
+    password.value.text = prefs.getString('userPassword').toString();
   }
 
-  void delete() {
-    counter++;
+  void visiblePass() {
+    visiblePassw.value = !visiblePassw.value;
   }
 }
