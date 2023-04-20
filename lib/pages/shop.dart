@@ -8,16 +8,17 @@ import 'package:get/get.dart';
 
 class ShopPage extends StatelessWidget {
   final totalCont = Get.find<ShopController>(tag: 'total-controller');
-  final quantity = Get.create(() => ShopController());
+  final quantity = Get.create<ShopController>(() => ShopController(),
+      tag: 'quantity-controller');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Home Page')),
+        appBar: AppBar(title: Text('Shop Page')),
         floatingActionButton:
             CircleAvatar(child: Obx(() => Text('${totalCont.total}'))),
-        body: Center(
-          child: Expanded(
+        body: Column(children: [
+          Expanded(
             child: SizedBox(
               child: ListView.builder(
                 itemCount: 5,
@@ -25,6 +26,6 @@ class ShopPage extends StatelessWidget {
               ),
             ),
           ),
-        ));
+        ]));
   }
 }

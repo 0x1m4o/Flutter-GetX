@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 class AppPage {
   static final routes = [
     /// Kita juga dapat menggunakan binding di route to named
+    GetPage(name: RouteNames.home, page: () => MyHome()),
     GetPage(
-        name: RouteNames.home, page: () => MyHome(), binding: ShopBinding()),
-    GetPage(name: RouteNames.shop, page: () => ShopPage()),
+        name: RouteNames.shop, page: () => ShopPage(), binding: ShopBinding()),
   ];
 }

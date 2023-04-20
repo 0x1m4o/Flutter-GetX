@@ -1,6 +1,5 @@
 /// Packages
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/controllers/mycontroller.dart';
 import 'package:get/get.dart';
 
 /// Files
@@ -28,7 +27,7 @@ class MyHome extends StatelessWidget {
 
                 /// Get.toNamed to Binding separately. I created a folder binding and set the binding inside GetPage
                 onPressed: () => Get.toNamed(
-                      RouteNames.shop,
+                      RouteNames.shop,           
                     ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

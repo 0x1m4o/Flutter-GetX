@@ -7,6 +7,4 @@ class ShopController extends GetxController {
   void incementQ() {
     quantity++;
   }
-
-  
 }

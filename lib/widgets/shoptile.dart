@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class ShopTile extends StatelessWidget {
   final totalCont = Get.find<ShopController>(tag: 'total-controller');
-  final quantityCont = Get.find<ShopController>();
+  final quantityCont = Get.find<ShopController>(tag: 'quantity-controller');
   @override
   Widget build(BuildContext context) {
     return ListTile(
