@@ -1,9 +1,11 @@
 /// Packages
 import 'package:flutter/material.dart';
+import 'package:flutter_getx/controllers/mycontroller.dart';
 import 'package:get/get.dart';
 
 /// Files
 import './shop.dart';
+import '../routes/route-name.dart';
 
 class MyHome extends StatelessWidget {
   const MyHome({super.key});
@@ -18,7 +20,16 @@ class MyHome extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 80),
             child: ElevatedButton(
-                onPressed: () => Get.to(() => ShopPage()),
+
+                /// Using Binding Builder in Get.to
+                // onPressed: () => Get.to(() => ShopPage(),
+                //     binding: BindingsBuilder(() =>
+                //         Get.put(ShopController(), tag: 'total-controller'))),
+
+                /// Get.toNamed to Binding separately. I created a folder binding and set the binding inside GetPage
+                onPressed: () => Get.toNamed(
+                      RouteNames.shop,
+                    ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [Text('Shop Page'), Icon(Icons.navigate_next)])),

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 /// Files
 
 class ShopPage extends StatelessWidget {
-  final totalCont = Get.put(ShopController(), tag: 'total-controller');
+  final totalCont = Get.find<ShopController>(tag: 'total-controller');
   final quantity = Get.create(() => ShopController());
 
   @override
