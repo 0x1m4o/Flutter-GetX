@@ -13,9 +13,14 @@ class MyHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Home Page')),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => Get.updateLocale(Locale('id', 'jawa'))),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Text('info'.trArgs(['Hai', 'yaa'])),
+          // Text('info'.trParams({'akrab': 'yaa'})),
+          Text('info'.trParams({'akrab': 'yaa'})),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 80),
             child: ElevatedButton(
@@ -27,7 +32,7 @@ class MyHome extends StatelessWidget {
 
                 /// Get.toNamed to Binding separately. I created a folder binding and set the binding inside GetPage
                 onPressed: () => Get.toNamed(
-                      RouteNames.shop,           
+                      RouteNames.shop,
                     ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

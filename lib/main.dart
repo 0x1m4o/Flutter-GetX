@@ -6,6 +6,7 @@ import './routes/app-route.dart';
 
 /// Files
 import './pages/homepage.dart';
+import './utils/translate.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: MyHome(),
+      translations: Translate(),
+      locale: Locale('en'),
       getPages: AppPage.routes,
     );
   }
