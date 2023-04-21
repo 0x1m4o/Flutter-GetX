@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ALL USERS"),
+        title: Text("All Tasks"),
         actions: [
           IconButton(
             onPressed: () => Get.toNamed(RouteName.add),
@@ -27,30 +27,33 @@ class HomePage extends StatelessWidget {
                   )
                 : ListView.builder(
                     itemCount: usersC.users.length,
-                    itemBuilder: (context, i) => ListTile(
-                      leading: CircleAvatar(),
-                      title: Text("${usersC.users[i].name}"),
-                      subtitle: Text("${usersC.users[i].email}"),
-                      trailing: IconButton(
-                        onPressed: () => usersC.delete(usersC.users[i].id),
-                        icon: Icon(
-                          Icons.delete_forever,
-                          color: Colors.red[900],
+                    itemBuilder: (context, i) {
+                      return ListTile(
+                        leading: CircleAvatar(),
+                        title: Text("${usersC.users[i].title}"),
+                        subtitle: Text("${usersC.users[i].desc}"),
+                        trailing: IconButton(
+                          onPressed: () {
+                            usersC.delete(usersC.users[i].id);
+                          },
+                          icon: Icon(
+                            Icons.delete_forever,
+                            color: Colors.red[900],
+                          ),
                         ),
-                      ),
-                      onTap: () => Get.toNamed(
-                        RouteName.profile,
-                        arguments: usersC.users[i].id,
-                      ),
-                    ),
-                  ),
+                        onTap: () => Get.toNamed(
+                          RouteName.profile,
+                          arguments: usersC.users[i].id,
+                        ),
+                      );
+                    }),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.get_app_rounded),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => usersC.getData(usersC.users[i].id),
+      //   child: Icon(Icons.get_app_rounded),
+      // ),
     );
   }
 }

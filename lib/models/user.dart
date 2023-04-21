@@ -1,8 +1,8 @@
-class User {
+class Task {
   String id;
-  String? name;
-  String? email;
-  String? phone;
+  String? title;
+  String? desc;
+  String? deadline;
 
-  User({required this.id, this.name, this.email, this.phone});
+  Task({required this.id, this.title, this.desc, this.deadline});
 }

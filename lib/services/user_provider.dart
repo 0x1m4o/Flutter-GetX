@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class UserProvider extends GetConnect {
@@ -9,28 +7,33 @@ class UserProvider extends GetConnect {
       'https://getx-getconnect-ec2b2-default-rtdb.asia-southeast1.firebasedatabase.app/';
 
   /// Post
-  Future<Response> postUser(String name, String email, String phone) {
+  Future<Response> postUser(String title, String desc, String deadline) {
     final body = json.encode({
-      "name": name,
-      "email": email,
-      "phone": phone,
+      "title": title,
+      "desc": desc,
+      "deadline": deadline,
     });
-    return post(url + 'users.json', body);
+    return post(url + 'task.json', body);
   }
 
   /// Delete
   Future<Response> deleteUser(String id) {
-    return delete(url + 'users/$id.json');
+    return delete(url + 'task/$id.json');
   }
 
   /// Edit Data
   Future<Response> editUser(
-      String id, String name, String email, String phone) {
+      String id, String title, String desc, String deadline) {
     final body = json.encode({
-      "name": name,
-      "email": email,
-      "phone": phone,
+      "title": title,
+      "desc": desc,
+      "deadline": deadline,
     });
-    return patch('${url}users/$id.json', body);
+    return patch('${url}task/$id.json', body);
+  }
+
+  /// Get Data
+  Future<Response> getUser() {
+    return get('${url}task.json');
   }
 }

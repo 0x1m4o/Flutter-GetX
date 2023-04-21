@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx/services/user_provider.dart';
 import 'package:get/get.dart';
 import '../models/user.dart';
 
@@ -16,14 +17,17 @@ class UsersC extends GetxController {
   void add(String name, String email, String phone) {
     if (name != '' && email != '' && phone != '') {
       if (email.contains("@")) {
-        users.add(
-          User(
-            id: DateTime.now().toString(),
-            name: name,
-            email: email,
-            phone: phone,
-          ),
-        );
+        UserProvider().postUser(name, email, phone).then((value) {
+          users.add(
+            User(
+              id: value.body['name'],
+              name: name,
+              email: email,
+              phone: phone,
+            ),
+          );
+        });
+
         Get.back();
       } else {
         snackBarError("Masukan email valid");
@@ -41,10 +45,12 @@ class UsersC extends GetxController {
     if (name != '' && email != '' && phone != '') {
       if (email.contains("@")) {
         final user = userById(id);
-        user.name = name;
-        user.email = email;
-        user.phone = phone;
-        users.refresh();
+        UserProvider().editUser(id, name, email, phone).then((value) {
+          user.name = name;
+          user.email = email;
+          user.phone = phone;
+          users.refresh();
+        });
         Get.back();
       } else {
         snackBarError("Masukan email valid");
@@ -62,8 +68,10 @@ class UsersC extends GetxController {
       textConfirm: "Ya",
       confirmTextColor: Colors.white,
       onConfirm: () {
-        users.removeWhere((element) => element.id == id);
-        _deleted = true;
+        UserProvider().deleteUser(id).then((value) {
+          users.removeWhere((element) => element.id == id);
+          _deleted = true;
+        });
         Get.back();
       },
       textCancel: "Tidak",

@@ -11,7 +11,7 @@ class AddPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ADD USER"),
+        title: Text("Add Task"),
       ),
       body: SafeArea(
         child: Padding(
@@ -19,48 +19,47 @@ class AddPage extends StatelessWidget {
           child: ListView(
             children: [
               TextField(
-                controller: addC.nameC,
+                controller: addC.titleController,
                 textInputAction: TextInputAction.next,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  labelText: "Full Name",
+                  labelText: "Task Name",
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 15),
               TextField(
-                controller: addC.emailC,
+                controller: addC.descController,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  labelText: "Email Address",
+                  labelText: "Description",
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 15),
               TextField(
-                controller: addC.phoneC,
+                controller: addC.deadlineController,
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.done,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  labelText: "Phone Number",
+                  labelText: "Deadline",
                   border: OutlineInputBorder(),
                 ),
                 onEditingComplete: () => usersC.add(
-                  
-                  addC.nameC.text,
-                  addC.emailC.text,
-                  addC.phoneC.text,
+                  addC.titleController.text,
+                  addC.descController.text,
+                  addC.deadlineController.text,
                 ),
               ),
               SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () => usersC.add(
-                  addC.nameC.text,
-                  addC.emailC.text,
-                  addC.phoneC.text,
+                  addC.titleController.text,
+                  addC.descController.text,
+                  addC.deadlineController.text,
                 ),
                 child: Text("ADD USER"),
               ),

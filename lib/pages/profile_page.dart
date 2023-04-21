@@ -12,10 +12,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User user = userC.userById(uid);
-    profileC.nameC.text = user.name!;
-    profileC.emailC.text = user.email!;
-    profileC.phoneC.text = user.phone!;
+    final Task task = userC.userById(uid);
+    profileC.titleController.text = task.title!;
+    profileC.descController.text = task.desc!;
+    profileC.deadlineController.text = task.deadline!;
 
     return Scaffold(
       appBar: AppBar(
@@ -37,46 +37,49 @@ class ProfilePage extends StatelessWidget {
           child: ListView(
             children: [
               TextField(
-                controller: profileC.nameC,
+                controller: profileC.titleController,
                 autocorrect: false,
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
+                  labelText: 'Task Name',
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 15),
               TextField(
-                controller: profileC.emailC,
+                controller: profileC.descController,
                 autocorrect: false,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
+                  labelText: 'Description',
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 15),
               TextField(
-                controller: profileC.phoneC,
+                controller: profileC.deadlineController,
                 autocorrect: false,
                 textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
+                  labelText: 'Deadline',
                   border: OutlineInputBorder(),
                 ),
                 onEditingComplete: () => userC.edit(
                   uid,
-                  profileC.nameC.text,
-                  profileC.emailC.text,
-                  profileC.phoneC.text,
+                  profileC.titleController.text,
+                  profileC.descController.text,
+                  profileC.deadlineController.text,
                 ),
               ),
               SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () => userC.edit(
                   uid,
-                  profileC.nameC.text,
-                  profileC.emailC.text,
-                  profileC.phoneC.text,
+                  profileC.titleController.text,
+                  profileC.descController.text,
+                  profileC.deadlineController.text,
                 ),
                 child: Text("UPDATE"),
               ),
