@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/controllers/mycontroller.dart';
+import '../controllers/mycontroller.dart';
 import 'package:get/get.dart';
 
 class ShopTile extends StatelessWidget {

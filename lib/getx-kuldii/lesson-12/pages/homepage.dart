@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /// Files
-import './shop.dart';
 import '../routes/route-name.dart';
 
 class MyHome extends StatelessWidget {
@@ -12,9 +11,20 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home Page')),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.updateLocale(Locale('id', 'jawa'))),
+      appBar: AppBar(
+        title: Text('Home Page'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.changeTheme(
+                    Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
+              },
+              icon: Icon(Get.isDarkMode ? Icons.sunny : Icons.dark_mode))
+        ],
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => Get.updateLocale(Locale('id', 'jawa')),
+      // ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:flutter_getx/controllers/mycontroller.dart';
+import '../controllers/mycontroller.dart';
 
 import './route-name.dart';
 import '../bindings/mybinding.dart';
