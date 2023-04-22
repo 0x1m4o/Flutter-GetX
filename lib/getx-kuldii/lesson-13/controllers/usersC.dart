@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/services/user_provider.dart';
+import '../services/user_provider.dart';
 import 'package:get/get.dart';
 import '../models/user.dart';
 
